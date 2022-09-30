@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    const callAPI = () => {
+      fetch("http://localhost:3001/api", {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({data: "client", date: + new Date()})
+      }).then(res => res.json())
+        .then(data => document.body.insertAdjacentHTML("beforeend", JSON.stringify(data)))
+    }
+    // const myGlobalFunc = data => {
+    //     document.body.insertAdjacentHTML("beforeend", JSON.stringify(data))
+    // }
+  </script>
+<!--  <script defer src="http://localhost:3001/api?callback=myGlobalFunc"></script>-->
+
+</head>
+
+<body>
+  <p>Hey grom the cross domain API</p>
+  <button onclick="callAPI()">
+    Call API
+  </button>
+  <br>
+  <form action="http://localhost:3001/api" method="post">
+    <input type="text" value="client" name="data"/>
+    <button type="submit">Send form wh js</button>
+  </form>
+  <br>
+</body>
+
+</html>
